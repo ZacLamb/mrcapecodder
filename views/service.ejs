@@ -1,0 +1,68 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= s.hero %>')">
+  <div class="wrap">
+    <nav class="crumbs light" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/services">Services</a> / <span><%= s.short %></span></nav>
+    <h1><%= s.name %></h1>
+    <p class="lead"><%= s.summary %></p>
+    <div class="hero-actions">
+      <a class="btn btn-red btn-lg" href="/contact?service=<%= s.slug %>">Book a Walk-Through</a>
+      <a class="btn btn-ghost-light btn-lg" href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="prose">
+      <p class="intro"><%= s.intro %></p>
+      <div class="incl-grid">
+        <% s.sections.forEach(function (sec) { %>
+          <div class="incl">
+            <h3><%= sec.title %></h3>
+            <ul class="checks"><% sec.items.forEach(function (it) { %><li><%= it %></li><% }) %></ul>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="side-img" style="background-image:url('<%= s.image %>')"></div>
+      <div class="side-box">
+        <h3>Good to know</h3>
+        <ul class="dots"><% biz.policies.forEach(function (p) { %><li><%= p %></li><% }) %></ul>
+        <a class="btn btn-red btn-block" href="/contact?service=<%= s.slug %>">Book a Walk-Through</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<% if (s.slug === 'marine-services') { %>
+<section class="section sand">
+  <div class="wrap photo-pair">
+    <div style="background-image:url('<%= img.whiteBoat1 %>')" role="img" aria-label="White Boats vessel care"></div>
+    <div style="background-image:url('<%= img.whiteBoat2 %>')" role="img" aria-label="White Boats on the water"></div>
+  </div>
+</section>
+<% } %>
+
+<section class="section <%= s.slug === 'marine-services' ? '' : 'sand' %>">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Service areas</p>
+      <h2><%= s.short %> by town</h2>
+      <p>We provide <%= s.name.toLowerCase() %> in every town on Cape Cod, Nantucket and Martha’s Vineyard.</p>
+    </div>
+    <div class="area-cols">
+      <% townGroups.forEach(function (g) { %>
+        <div>
+          <h3><%= g.label %></h3>
+          <ul><% g.towns.forEach(function (t) { %><li><a href="<%= s.url %>/<%= t.slug %>"><%= s.short %> in <%= t.name %></a></li><% }) %></ul>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta', { ctaHref: '/contact?service=' + s.slug }) %>
+<%- include('partials/footer') %>

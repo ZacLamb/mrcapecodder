@@ -1,0 +1,12 @@
+<section class="cta-band">
+  <div class="wrap cta-in">
+    <div>
+      <h2><%= typeof ctaTitle !== 'undefined' ? ctaTitle : 'Book a walk-through of your property' %></h2>
+      <p>Share a few details and we’ll reach out within 48 hours to walk the property with you and recommend the right level of care.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-red btn-lg" href="<%= typeof ctaHref !== 'undefined' ? ctaHref : '/contact' %>">Book a Walk-Through</a>
+      <a class="btn btn-ghost-light btn-lg" href="tel:<%= biz.phoneHref %>">Call <%= biz.phone %></a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand brand-light" href="/">
+        <span class="brand-mark" aria-hidden="true"><%- include('icon', { name: 'anchor' }) %></span>
+        <span class="brand-text"><strong><%= biz.name %></strong><small><%= biz.tagline %></small></span>
+      </a>
+      <p class="footer-slogan">“<%= biz.slogan %>.”</p>
+      <p><%= biz.owner %><br>
+        <a href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a><br>
+        <a href="mailto:<%= biz.email %>"><%= biz.email %></a></p>
+      <p class="muted-light"><%= biz.serviceArea %></p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <% services.forEach(function (s) { %><li><a href="<%= s.url %>"><%= s.name %></a></li><% }) %>
+      </ul>
+    </div>
+    <div class="footer-areas">
+      <h4>Service Areas</h4>
+      <% townGroups.forEach(function (g) { %>
+        <p><span class="area-label"><%= g.label %>:</span>
+          <% g.towns.forEach(function (t, i) { %><a href="/service-areas/<%= t.slug %>"><%= t.name %></a><%= i < g.towns.length - 1 ? ', ' : '' %><% }) %>
+        </p>
+      <% }) %>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <%= new Date().getFullYear() %> <%= biz.legalName %>. All rights reserved.</span>
+    <span><a href="/packages">Packages</a> · <a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/sitemap.xml">Sitemap</a></span>
+  </div>
+</footer>
+<div class="mobile-cta">
+  <a href="tel:<%= biz.phoneHref %>" class="btn btn-navy">Call</a>
+  <a href="/contact" class="btn btn-red">Book a Walk-Through</a>
+</div>
+</body>
+</html>

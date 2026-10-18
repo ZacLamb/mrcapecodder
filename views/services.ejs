@@ -1,0 +1,34 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= img.beachHouses %>')">
+  <div class="wrap">
+    <p class="eyebrow light">Services</p>
+    <h1>Property care for Cape Cod &amp; the Islands</h1>
+    <p class="lead">Ten services, one trusted contact. Choose what your property needs — or let us recommend a plan at your walk-through.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="svc-list">
+      <% services.forEach(function (s, i) { %>
+        <article class="svc-row <%= i % 2 ? 'rev' : '' %>">
+          <a href="<%= s.url %>" class="svc-row-img" style="background-image:url('<%= s.image %>')" aria-label="<%= s.name %>"></a>
+          <div>
+            <span class="svc-icon"><%- include('partials/icon', { name: s.icon }) %></span>
+            <h2><a href="<%= s.url %>"><%= s.name %></a></h2>
+            <p><%= s.summary %></p>
+            <ul class="checks two-col">
+              <% s.sections.slice(0, 2).forEach(function (sec) { sec.items.slice(0, 2).forEach(function (it) { %><li><%= it %></li><% }) }) %>
+            </ul>
+            <a class="btn btn-navy" href="<%= s.url %>">Learn more</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/footer') %>

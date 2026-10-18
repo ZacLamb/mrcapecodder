@@ -1,0 +1,117 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="hero" style="--bg:url('<%= img.shoreline %>')">
+  <div class="wrap hero-in">
+    <p class="eyebrow">Cape Cod · Nantucket · Martha’s Vineyard</p>
+    <h1>Cape Cod’s property management &amp; estate care</h1>
+    <p class="lead">Your home looked after by someone local who knows it — inspections, storms, rentals, contractors, snow, site work and your boat. One trusted contact. <em>The Most Connected on Cape.</em></p>
+    <div class="hero-actions">
+      <a class="btn btn-red btn-lg" href="/contact">Book a Walk-Through</a>
+      <a class="btn btn-ghost-light btn-lg" href="/packages">See Packages</a>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div><%- include('partials/icon', { name: 'pin' }) %><span><strong>Lifelong Cape Codders</strong>Local roots, local relationships</span></div>
+    <div><%- include('partials/icon', { name: 'network' }) %><span><strong>The Most Connected on Cape</strong>The right pro for every job</span></div>
+    <div><%- include('partials/icon', { name: 'camera' }) %><span><strong>Photo reports</strong>See your property from anywhere</span></div>
+    <div><%- include('partials/icon', { name: 'phone' }) %><span><strong>Direct line to Jeremy</strong>No call centers, no runaround</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Everything your Cape property needs, under one roof</h2>
+      <p>We act as your local representative — handling the work directly or bringing in the right trusted professional from our network.</p>
+    </div>
+    <div class="card-grid">
+      <% services.forEach(function (s) { %>
+        <a class="svc-card" href="<%= s.url %>">
+          <div class="svc-img" style="background-image:url('<%= s.image %>')"></div>
+          <div class="svc-body">
+            <span class="svc-icon"><%- include('partials/icon', { name: s.icon }) %></span>
+            <h3><%= s.name %></h3>
+            <p><%= s.summary %></p>
+            <span class="link-arrow">Learn more →</span>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section sand">
+  <div class="wrap split">
+    <div class="split-img" style="background-image:url('<%= img.aboutPhoto %>')" role="img" aria-label="Mr. Cape Codder at work"></div>
+    <div>
+      <p class="eyebrow">About Mr. Cape Codder</p>
+      <h2>Built on a lifetime of living and working on Cape Cod</h2>
+      <p>Mr. Cape Codder provides exceptional property management and estate services built on deep local connections, extensive hands-on experience and a trusted network of skilled professionals.</p>
+      <p>Our mission is simple: protect the value of your property while delivering reliable, responsive service. From routine maintenance to complex projects, we connect every need with the right professional so the job is done correctly and efficiently.</p>
+      <a class="btn btn-navy" href="/about">Meet Jeremy</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Packages</p>
+      <h2>Pick your level of care</h2>
+    </div>
+    <div class="pkg-grid">
+      <% packages.forEach(function (p) { %>
+        <div class="pkg <%= p.badge ? 'pkg-featured' : '' %>">
+          <% if (p.badge) { %><span class="pkg-badge"><%= p.badge %></span><% } %>
+          <h3><%= p.name %></h3>
+          <p class="pkg-price"><%= p.price %> <small><%= p.terms %></small></p>
+          <p class="pkg-pitch"><%= p.pitch %></p>
+          <ul class="checks">
+            <% p.groups[0].items.slice(0, 4).forEach(function (it) { %><li><%= it %></li><% }) %>
+          </ul>
+          <a class="btn <%= p.badge ? 'btn-red' : 'btn-navy' %>" href="/packages#<%= p.slug %>">See details</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section navy">
+  <div class="wrap split split-rev">
+    <div>
+      <p class="eyebrow light">Why owners choose us</p>
+      <h2>Local oversight and direct accountability</h2>
+      <p>Owning a property on Cape Cod comes with unique responsibilities — seasonal weather, coastal wear and tear, and coordinating trusted service people. Mr. Cape Codder was built to simplify that.</p>
+      <p>We serve as the owner’s trusted representative, making sure every detail is handled properly, professionally and on time. For homeowners who live away from the Cape, that means peace of mind.</p>
+      <a class="btn btn-red" href="/contact">Book a Walk-Through</a>
+    </div>
+    <div class="split-img" style="background-image:url('<%= img.whiteBoat2 %>')" role="img" aria-label="White Boats marine services"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Service areas</p>
+      <h2>Every town on Cape Cod — and the Islands</h2>
+    </div>
+    <div class="area-cols">
+      <% townGroups.forEach(function (g) { %>
+        <div>
+          <h3><%= g.label %></h3>
+          <ul>
+            <% g.towns.forEach(function (t) { %><li><a href="/service-areas/<%= t.slug %>"><%= t.name %></a></li><% }) %>
+          </ul>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/footer') %>

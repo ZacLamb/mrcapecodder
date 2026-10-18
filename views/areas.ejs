@@ -1,0 +1,32 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= img.lighthouse %>')">
+  <div class="wrap">
+    <p class="eyebrow light">Service Areas</p>
+    <h1>Every town on Cape Cod, plus Nantucket &amp; the Vineyard</h1>
+    <p class="lead">From the Canal to Provincetown and across the water to the Islands. Island trips carry a $75 trip fee plus ferry cost.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <% townGroups.forEach(function (g) { %>
+      <div class="region">
+        <h2><%= g.label %></h2>
+        <div class="town-cards">
+          <% g.towns.forEach(function (t) { %>
+            <a class="town-card" href="/service-areas/<%= t.slug %>">
+              <h3><%= t.name %>, MA</h3>
+              <p><%= list(t.villages, 4) %></p>
+              <span class="link-arrow">View services →</span>
+            </a>
+          <% }) %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/footer') %>

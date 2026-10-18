@@ -1,0 +1,65 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero short" style="--bg:url('<%= img.shoreline %>')">
+  <div class="wrap">
+    <p class="eyebrow light">Contact</p>
+    <h1>Book a walk-through</h1>
+    <p class="lead">Interested in having us manage your home, estate or rental? Share a few details and we’ll reach out within 48 hours.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split contact-split">
+    <div>
+      <% if (sent) { %>
+        <div class="notice ok"><strong>Thank you!</strong> We got your request and will reach out within 48 hours.</div>
+      <% } %>
+      <% if (error) { %>
+        <div class="notice err">Please add your name and a phone number or email so we can reach you.</div>
+      <% } %>
+      <form class="form" method="post" action="/contact">
+        <div class="row2">
+          <label>Name*<input name="name" required autocomplete="name"></label>
+          <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label>Email<input name="email" type="email" autocomplete="email"></label>
+        <div class="row2">
+          <label>Property town
+            <select name="town">
+              <option value="">Select a town</option>
+              <% towns.forEach(function (t) { %><option value="<%= t.name %>" <%= prefill.town === t.slug ? 'selected' : '' %>><%= t.name %></option><% }) %>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label>Service
+            <select name="service">
+              <option value="">What do you need?</option>
+              <% services.forEach(function (s) { %><option value="<%= s.name %>" <%= prefill.service === s.slug ? 'selected' : '' %>><%= s.name %></option><% }) %>
+            </select>
+          </label>
+        </div>
+        <label>Package (optional)
+          <select name="package">
+            <option value="">Not sure yet</option>
+            <% packages.forEach(function (p) { %><option value="<%= p.name %>" <%= prefill.pkg === p.slug ? 'selected' : '' %>><%= p.name %> — <%= p.price %> <%= p.terms %></option><% }) %>
+          </select>
+        </label>
+        <label>Tell us about your property<textarea name="message" rows="5" placeholder="Seasonal home, rental, estate? Dock or boat? Anything we should know?"></textarea></label>
+        <label class="hp" aria-hidden="true">Company website<input name="company_website" tabindex="-1" autocomplete="off"></label>
+        <button class="btn btn-red btn-lg" type="submit">Request My Walk-Through</button>
+      </form>
+    </div>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Talk to Jeremy directly</h3>
+        <p><strong><%= biz.owner %></strong></p>
+        <p><a href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a><br><a href="mailto:<%= biz.email %>"><%= biz.email %></a></p>
+        <p class="muted"><%= biz.serviceArea %></p>
+      </div>
+      <div class="side-img" style="background-image:url('<%= img.dunesHouse %>')"></div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

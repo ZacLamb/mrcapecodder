@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <% if (description) { %><meta name="description" content="<%= description %>"><% } %>
+  <link rel="canonical" href="<%= canonical %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= biz.legalName %>">
+  <meta property="og:title" content="<%= title %>">
+  <% if (description) { %><meta property="og:description" content="<%= description %>"><% } %>
+  <meta property="og:url" content="<%= canonical %>">
+  <meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : img.shoreline %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0e2a3b">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  <%- JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    name: biz.legalName,
+    alternateName: biz.name,
+    slogan: biz.slogan,
+    url: biz.url,
+    telephone: biz.phone,
+    email: biz.email,
+    image: img.shoreline,
+    founder: { '@type': 'Person', name: biz.owner },
+    address: { '@type': 'PostalAddress', addressRegion: 'MA', addressCountry: 'US', addressLocality: 'Cape Cod' },
+    areaServed: ['Cape Cod, MA', 'Nantucket, MA', "Martha's Vineyard, MA"]
+  }) %>
+  </script>
+  <% if (typeof schema !== 'undefined') { %><script type="application/ld+json"><%- JSON.stringify(schema) %></script><% } %>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>

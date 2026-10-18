@@ -1,0 +1,44 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= img.aboutCape %>')">
+  <div class="wrap">
+    <p class="eyebrow light">About</p>
+    <h1>Who is Mr. Cape Codder?</h1>
+    <p class="lead">Property owners deserve someone local they can trust to care for their home as if it were their own.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="prose">
+      <p>Mr. Cape Codder was built by lifelong Cape Cod residents with deep roots in the community to provide reliable estate and property management for homeowners who cannot always be present. Whether it is a seasonal home, a rental property or a private estate, every property needs attention, coordination and dependable local oversight.</p>
+      <h2>What sets us apart is connection</h2>
+      <p>Through years of working across construction, marine services, property care and contractor coordination, we have built relationships with trusted professionals across Cape Cod and the surrounding areas. When something needs to be done, we know who to call to make sure it is done correctly and efficiently.</p>
+      <h2>Your representative on Cape</h2>
+      <p>From routine inspections and property maintenance to rental management and project coordination, Mr. Cape Codder makes sure every property is cared for with professionalism, attention to detail and pride in the community we serve.</p>
+      <p>That commitment is what makes Mr. Cape Codder <strong>“The Most Connected on Cape.”</strong></p>
+      <div class="owner-card">
+        <strong><%= biz.owner %></strong><span>Owner, <%= biz.legalName %></span>
+        <a href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a>
+        <a href="mailto:<%= biz.email %>"><%= biz.email %></a>
+      </div>
+    </div>
+    <div class="split-img tall" style="background-image:url('<%= img.aboutPhoto %>')" role="img" aria-label="Mr. Cape Codder"></div>
+  </div>
+</section>
+
+<section class="section sand">
+  <div class="wrap">
+    <div class="section-head"><h2>How we work</h2></div>
+    <div class="steps">
+      <div class="step"><span>1</span><h3>Walk-through</h3><p>We walk your property with you (or on video) and learn how it runs.</p></div>
+      <div class="step"><span>2</span><h3>Your plan</h3><p>We recommend a package or custom plan and put it in writing.</p></div>
+      <div class="step"><span>3</span><h3>We take it from here</h3><p>Inspections, storms, contractors and fixes — handled and reported with photos.</p></div>
+      <div class="step"><span>4</span><h3>One direct line</h3><p>Anything comes up, you call Jeremy. That’s it.</p></div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/footer') %>

@@ -1,0 +1,49 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= t.island ? img.harborHills : img.bayHouse %>')">
+  <div class="wrap">
+    <nav class="crumbs light" aria-label="Breadcrumb"><a href="/service-areas">Service Areas</a> / <span><%= t.name %></span></nav>
+    <h1>Property management in <%= t.name %>, MA</h1>
+    <p class="lead">Your local representative in <%= list(t.villages, 4) %>.</p>
+    <div class="hero-actions">
+      <a class="btn btn-red btn-lg" href="/contact?town=<%= t.slug %>">Book a Walk-Through</a>
+      <a class="btn btn-ghost-light btn-lg" href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="prose narrow">
+      <p class="intro"><%= t.blurb %></p>
+      <p>Mr. Cape Codder looks after <%= t.homes %> across <%= t.name %>, with properties along <%= list(t.water, 4) %>. Whether you need a weekly set of eyes on an empty house, a rental run for the summer, a driveway plowed or a boat brought to its mooring, we handle it — or bring in the right local pro and supervise the work.<% if (t.island) { %> Island visits carry a $75 trip fee plus ferry cost.<% } %></p>
+    </div>
+    <div class="card-grid">
+      <% services.forEach(function (s) { %>
+        <a class="svc-card" href="<%= s.url %>/<%= t.slug %>">
+          <div class="svc-img" style="background-image:url('<%= s.image %>')"></div>
+          <div class="svc-body">
+            <span class="svc-icon"><%- include('partials/icon', { name: s.icon }) %></span>
+            <h3><%= s.short %> in <%= t.name %></h3>
+            <p><%= s.summary %></p>
+            <span class="link-arrow">Learn more →</span>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section sand">
+  <div class="wrap">
+    <div class="section-head"><h2>Nearby towns we serve</h2></div>
+    <div class="town-pills">
+      <% nearbyTowns.forEach(function (n) { %><a class="pill" href="/service-areas/<%= n.slug %>"><%= n.name %></a><% }) %>
+      <a class="pill pill-dark" href="/service-areas">All service areas →</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta', { ctaTitle: 'Own a home in ' + t.name + '?', ctaHref: '/contact?town=' + t.slug }) %>
+<%- include('partials/footer') %>

@@ -1,0 +1,32 @@
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <span><%= biz.serviceArea %></span>
+    <span><a href="tel:<%= biz.phoneHref %>"><%= biz.phone %></a> · <a href="mailto:<%= biz.email %>"><%= biz.email %></a></span>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="/" aria-label="<%= biz.name %> home">
+      <span class="brand-mark" aria-hidden="true"><%- include('icon', { name: 'anchor' }) %></span>
+      <span class="brand-text"><strong><%= biz.name %></strong><small><%= biz.tagline %></small></span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+    <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-item has-menu">
+        <a href="/services" class="<%= path.startsWith('/services') ? 'active' : '' %>">Services</a>
+        <div class="menu">
+          <% services.forEach(function (s) { %>
+            <a href="<%= s.url %>"><%= s.name %></a>
+          <% }) %>
+        </div>
+      </div>
+      <a href="/service-areas" class="<%= path.startsWith('/service-areas') ? 'active' : '' %>">Service Areas</a>
+      <a href="/services/marine-services" class="<%= path.startsWith('/services/marine-services') ? 'active' : '' %>">Marine</a>
+      <a href="/packages" class="<%= path === '/packages' ? 'active' : '' %>">Packages</a>
+      <a href="/about" class="<%= path === '/about' ? 'active' : '' %>">About</a>
+      <a href="/contact" class="btn btn-red nav-cta">Book a Walk-Through</a>
+    </nav>
+  </div>
+</header>
+<main id="main">

@@ -1,0 +1,39 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-hero" style="--bg:url('<%= img.snowCabin %>')">
+  <div class="wrap">
+    <p class="eyebrow light">Packages</p>
+    <h1>Packages &amp; pricing</h1>
+    <p class="lead">Simple plans for every kind of Cape home — from winter-only coverage to full white-glove estate care.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="pkg-grid">
+      <% packages.forEach(function (p) { %>
+        <article id="<%= p.slug %>" class="pkg pkg-full <%= p.badge ? 'pkg-featured' : '' %>">
+          <% if (p.badge) { %><span class="pkg-badge"><%= p.badge %></span><% } %>
+          <h2><%= p.name %></h2>
+          <p class="pkg-price"><%= p.price %> <small><%= p.terms %></small></p>
+          <p class="pkg-pitch"><%= p.pitch %></p>
+          <% p.groups.forEach(function (g) { %>
+            <h4><%= g.title %></h4>
+            <ul class="checks"><% g.items.forEach(function (it) { %><li><%= it %></li><% }) %></ul>
+          <% }) %>
+          <a class="btn <%= p.badge ? 'btn-red' : 'btn-navy' %> btn-block" href="/contact?package=<%= p.slug %>">Choose <%= p.name %></a>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="good-to-know">
+      <h3>Good to know</h3>
+      <ul class="dots"><% biz.policies.forEach(function (p) { %><li><%= p %></li><% }) %></ul>
+      <p>Not sure which fits? <a href="/contact">Book a walk-through</a> and we’ll recommend the right plan — or build a custom one.</p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta') %>
+<%- include('partials/footer') %>
